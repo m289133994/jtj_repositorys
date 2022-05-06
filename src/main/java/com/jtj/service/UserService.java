@@ -1,6 +1,6 @@
 package com.jtj.service;
 
-import com.jtj.pojo.User;
+import com.jtj.model.User;
 
 /**
  * @author csh

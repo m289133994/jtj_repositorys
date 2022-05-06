@@ -1,9 +1,9 @@
 package com.jtj.controller;
 
 import com.alibaba.fastjson.JSON;
-import com.jtj.pojo.User;
+import com.jtj.model.User;
 import com.jtj.service.UserService;
-import com.jtj.util.JsonResult;
+import com.jtj.util.Result;
 import com.jtj.util.ShiroUtil;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
@@ -93,12 +93,12 @@ public class MyController {
 
     @RequestMapping("/test")
     @ResponseBody
-    public JsonResult test(){
+    public Result test(){
 
         ArrayList<String> result = new ArrayList<>();
         result.add("测试一下");
         result.add("测试两下");
         User user = userService.queryUserByName("2");
-        return  new JsonResult(user);
+        return  new Result(user);
     }
 }

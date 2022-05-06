@@ -1,7 +1,7 @@
 package com.jtj.service.impl;
 
-import com.jtj.mapper.UserMapper;
-import com.jtj.pojo.User;
+import com.jtj.dao.UserMapper;
+import com.jtj.model.User;
 import com.jtj.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

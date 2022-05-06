@@ -42,11 +42,11 @@
             </exclusions>
         </dependency>
         <!-- shiro thymeleaf整合 -->
-        <dependency>
+<!--        <dependency>
             <groupId>com.github.theborakompanioni</groupId>
             <artifactId>thymeleaf-extras-shiro</artifactId>
             <version>2.0.0</version>
-        </dependency>
+        </dependency>-->
         <!-- 引入mysql驱动包 -->
         <dependency>
             <groupId>mysql</groupId>
@@ -64,10 +64,10 @@
             <artifactId>mybatis-spring-boot-starter</artifactId>
             <version>2.1.0</version>
         </dependency>
-        <dependency>
+<!--        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
-        </dependency>
+        </dependency>-->
         <dependency>
             <groupId>org.apache.shiro</groupId>
             <artifactId>shiro-spring</artifactId>

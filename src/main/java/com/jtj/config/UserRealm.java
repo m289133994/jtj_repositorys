@@ -1,6 +1,6 @@
 package com.jtj.config;
 
-import com.jtj.pojo.User;
+import com.jtj.model.User;
 import com.jtj.service.UserService;
 import com.jtj.util.ShiroUtil;
 import org.apache.shiro.SecurityUtils;

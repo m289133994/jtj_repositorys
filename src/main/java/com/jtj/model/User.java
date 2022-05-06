@@ -1,4 +1,4 @@
-package com.jtj.pojo;
+package com.jtj.model;
 
 
 /**

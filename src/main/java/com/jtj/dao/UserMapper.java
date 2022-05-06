@@ -1,6 +1,6 @@
-package com.jtj.mapper;
+package com.jtj.dao;
 
-import com.jtj.pojo.User;
+import com.jtj.model.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
