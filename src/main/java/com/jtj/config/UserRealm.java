@@ -1,6 +1,8 @@
 package com.jtj.config;
 
+import com.jtj.model.SysUser;
 import com.jtj.model.User;
+import com.jtj.service.SysUserService;
 import com.jtj.service.UserService;
 import com.jtj.util.ShiroUtil;
 import org.apache.shiro.SecurityUtils;
@@ -21,8 +23,10 @@ import org.springframework.beans.factory.annotation.Autowired;
  */
 public class UserRealm extends AuthorizingRealm {
     private static final org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(AuthorizingRealm.class);
+    /*@Autowired
+    UserService userService;*/
     @Autowired
-    UserService userService;
+    private SysUserService sysUserService;
     //授权
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
@@ -48,21 +52,23 @@ public class UserRealm extends AuthorizingRealm {
         logger.info("执行认证==》AuthenticationInfo");
        //连接真实的数据库
         UsernamePasswordToken userToken = (UsernamePasswordToken) token;
-        User user = userService.queryUserByName(userToken.getUsername());
+        SysUser parameter = new SysUser();
+        parameter.setName(userToken.getUsername());
+        SysUser sysUser = sysUserService.queryUserByParameter(parameter);
         //把登录用户塞进shiro的session shiro有自己独立的session~这也是为什么shiro可以脱离web使用
         Subject subject = SecurityUtils.getSubject();
         Session session = subject.getSession();
-        session.setAttribute("loginUser", user);
-        if(user == null){
+        session.setAttribute("loginUser", sysUser);
+        if(sysUser == null){
             throw new UnknownAccountException();
         }
         //盐值
-        String saltPassword = ShiroUtil.saltPassword(userToken.getPassword(), user.getSaltValue());
+        String saltPassword = ShiroUtil.saltPassword(userToken.getPassword(), ShiroUtil.defaultSalt());
         // userToken.getPassword() 获取用户输入的密码
-        if (!user.getPwd().equals(saltPassword)){
+        if (!sysUser.getPwd().equals(saltPassword)){
             throw new IncorrectCredentialsException();
         }
         //密码认证，由shiro做~ 为了防止密码泄露  第4个参数是realm名称
-        return new SimpleAuthenticationInfo(user, userToken.getPassword(), ByteSource.Util.bytes(user.getSaltValue()), this.getName());
+        return new SimpleAuthenticationInfo(sysUser, userToken.getPassword(), ByteSource.Util.bytes(ShiroUtil.defaultSalt()), this.getName());
     }
 }

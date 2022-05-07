@@ -18,7 +18,7 @@ public class SysUser implements Serializable{
 
 	private Integer status;//数据状态 0:无效 1：有效
 
-	private Date creatTime;//创建时间
+	private Date createTime;//创建时间
 
 	private Date updateTime;//更新时间
 
@@ -63,13 +63,13 @@ public class SysUser implements Serializable{
 		this.corporateIdentify = corporateIdentify;
 	}
 	//get方法
-	public Date getCreatTime() {
-		return creatTime;
+	public Date getCreateTime() {
+		return createTime;
 	}
 
 	//set方法
-	public void setCreatTime(Date creatTime) {
-		this.creatTime = creatTime;
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
 	}
 	//get方法
 	public Date getUpdateTime() {

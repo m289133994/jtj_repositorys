@@ -20,4 +20,6 @@ public interface SysUserService {
 
     public List<SysUser> queryAll();
 
+    public SysUser queryUserByParameter(SysUser sysUser);
+
 }

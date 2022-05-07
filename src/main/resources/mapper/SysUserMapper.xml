@@ -7,7 +7,7 @@
     <result column="pwd" jdbcType="VARCHAR" property="pwd" />
     <result column="corporate_identify" jdbcType="VARCHAR" property="corporateIdentify" />
     <result column="status" jdbcType="INTEGER" property="status" />
-    <result column="creat_time" jdbcType="TIMESTAMP" property="creatTime" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
     <result column="remark" jdbcType="VARCHAR" property="remark" />
   </resultMap>
@@ -17,10 +17,10 @@
   </delete>
   <insert id="insert" parameterType="com.jtj.model.SysUser">
     insert into sys_user (user_id, name, pwd, 
-      corporate_identify, status, creat_time, 
+      corporate_identify, status, create_time,
       update_time, remark)
     values (#{userId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{pwd,jdbcType=VARCHAR}, 
-      #{corporateIdentify,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{creatTime,jdbcType=TIMESTAMP}, 
+      #{corporateIdentify,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP},
       #{updateTime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR})
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.jtj.model.SysUser">
@@ -29,18 +29,30 @@
       pwd = #{pwd,jdbcType=VARCHAR},
       corporate_identify = #{corporateIdentify,jdbcType=VARCHAR},
       status = #{status,jdbcType=INTEGER},
-      creat_time = #{creatTime,jdbcType=TIMESTAMP},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP},
       remark = #{remark,jdbcType=VARCHAR}
     where user_id = #{userId,jdbcType=INTEGER}
   </update>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select user_id, name, pwd, corporate_identify, status, creat_time, update_time, remark
+    select user_id, name, pwd, corporate_identify, status, create_time, update_time, remark
     from sys_user
     where user_id = #{userId,jdbcType=INTEGER}
   </select>
   <select id="selectAll" resultMap="BaseResultMap">
-    select user_id, name, pwd, corporate_identify, status, creat_time, update_time, remark
+    select user_id, name, pwd, corporate_identify, status, create_time, update_time, remark
     from sys_user
+  </select>
+  <select id="queryUserByParameter" resultMap="BaseResultMap" parameterType="com.jtj.model.SysUser">
+    select user_id, name, pwd, corporate_identify, status, create_time, update_time, remark
+    from sys_user
+    <where>
+      <if test=" name != null">
+        name =#{name,jdbcType=VARCHAR}
+      </if>
+      <if test="pwd !=null">
+         and pwd =#{pwd,jdbcType=VARCHAR}
+      </if>
+    </where>
   </select>
 </mapper>

@@ -16,4 +16,9 @@ public class ShiroUtil {
     public static String saltPassword(Object srcPwd, String saltValue){
         return new SimpleHash("MD5", srcPwd, saltValue, 1024).toString();
     }
+
+    public  static String defaultSalt(){
+        return  "4d17d3cf10d341e9990cec09bd649b26";
+    }
+
 }
