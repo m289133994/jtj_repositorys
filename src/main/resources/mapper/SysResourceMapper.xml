@@ -45,4 +45,12 @@
     update_time, remark
     from sys_resource
   </select>
+  <select id="getResourceListByIdentify" resultMap="BaseResultMap">
+    SELECT r.resource_id, r.resource_name, r.parent_id, r.resource_url, r.status, r.create_time,
+    r.update_time, r.remark
+    FROM sys_resource r INNER  JOIN
+    sys_identify_resource i ON r.resource_id =i.resource_id
+    WHERE
+    i.corporate_identify =#{corporateIdentify,jdbcType=VARCHAR}
+  </select>
 </mapper>

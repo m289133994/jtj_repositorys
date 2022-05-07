@@ -34,4 +34,9 @@ public class SysResourceServiceImpl implements SysResourceService {
 
     @Override
     public List<SysResource> queryAll() { return sysResourceMapper.selectAll(); }
+
+    @Override
+    public List<SysResource> getResourceListByIdentify(String corporateIdentify) {
+        return sysResourceMapper.getResourceListByIdentify(corporateIdentify);
+    }
 }

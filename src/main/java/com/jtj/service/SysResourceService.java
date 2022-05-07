@@ -20,4 +20,6 @@ public interface SysResourceService {
 
     public List<SysResource> queryAll();
 
+    public List<SysResource> getResourceListByIdentify(String corporateIdentify);
+
 }

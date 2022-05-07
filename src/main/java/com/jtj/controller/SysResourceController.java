@@ -1,9 +1,12 @@
 package com.jtj.controller;
 
 import com.jtj.model.SysResource;
+import com.jtj.model.SysUser;
+import com.jtj.service.SysIdentifyResourceService;
 import com.jtj.service.SysResourceService;
 import com.jtj.util.CodeStatus;
 import com.jtj.util.Result;
+import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,7 +24,8 @@ public class SysResourceController {
     // 注入业务层对象
     @Autowired
     private SysResourceService sysResourceService;
-
+    @Autowired
+    private SysIdentifyResourceService sysIdentifyResourceService;
 
     @RequestMapping(value = "/insert",method = RequestMethod.POST)
     public Object insert(SysResource sysResource){
@@ -73,4 +77,12 @@ public class SysResourceController {
         return new Result(sysResources);
     }
 
+    //通过企业标识获取菜单数据
+    @RequestMapping("/getResourceByIdentify")
+    public Object getResourceByIdentify(){
+        //从shiro的session中取出当前用户信息
+        SysUser sysUser = (SysUser)SecurityUtils.getSubject().getSession().getAttribute("sysUser");
+        List<SysResource> resourceListByIdentify = sysResourceService.getResourceListByIdentify(sysUser.getCorporateIdentify());
+        return new Result(resourceListByIdentify);
+    }
 }

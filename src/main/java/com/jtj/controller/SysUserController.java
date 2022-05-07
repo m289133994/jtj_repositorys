@@ -1,6 +1,7 @@
 package com.jtj.controller;
 
 import com.jtj.model.SysUser;
+import com.jtj.service.SysIdentifyResourceService;
 import com.jtj.service.SysUserService;
 import com.jtj.util.CodeStatus;
 import com.jtj.util.Result;

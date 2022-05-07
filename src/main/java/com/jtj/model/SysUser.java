@@ -1,5 +1,7 @@
 package com.jtj.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -18,8 +20,10 @@ public class SysUser implements Serializable{
 
 	private Integer status;//数据状态 0:无效 1：有效
 
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss"/*,timezone = "GMT+8"*/)
 	private Date createTime;//创建时间
 
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss"/*,timezone = "GMT+8"*/)
 	private Date updateTime;//更新时间
 
 	private String remark;//备注

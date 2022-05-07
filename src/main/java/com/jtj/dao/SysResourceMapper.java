@@ -21,4 +21,6 @@ public interface SysResourceMapper  {
     List<SysResource> selectAll();
 
     int updateByPrimaryKey(SysResource record);
+
+    List<SysResource> getResourceListByIdentify(String corporateIdentify);
 }

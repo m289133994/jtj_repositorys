@@ -58,7 +58,7 @@ public class UserRealm extends AuthorizingRealm {
         //把登录用户塞进shiro的session shiro有自己独立的session~这也是为什么shiro可以脱离web使用
         Subject subject = SecurityUtils.getSubject();
         Session session = subject.getSession();
-        session.setAttribute("loginUser", sysUser);
+        session.setAttribute("sysUser", sysUser);
         if(sysUser == null){
             throw new UnknownAccountException();
         }
