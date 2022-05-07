@@ -110,12 +110,6 @@ public class SysUserController {
         }
     }
 
-    //设置未登录时的返回信息
-    @PostMapping("/unAuthor")
-    @ResponseBody
-    public Object unauthorized(){
-        return new Result(CodeStatus.ERROR,"用户未登录");
-    }
 
     //登出
     @PostMapping("/logout")
